@@ -1,0 +1,25 @@
+<section class="book-show">
+  <header class="page-header">
+    <h1><%= @book.title %></h1>
+    <p class="subtitle">by <%= @book.author %></p>
+  </header>
+
+  <dl class="book-details">
+    <dt>Price:</dt>
+    <dd><%= number_to_currency(@book.price) %></dd>
+
+    <dt>Published On:</dt>
+    <dd><%= @book.published_at&.strftime("%B %d, %Y") %></dd>
+
+    <dt>Description:</dt>
+    <dd><%= @book.description.presence || "No description available." %></dd>
+  </dl>
+
+  <div class="actions">
+    <%= link_to "Edit this book", edit_book_path(@book), class: "btn" %>
+    <%= link_to "Back to all books", books_path, class: "btn-secondary" %>
+    <%= button_to "Delete this book", @book, method: :delete,
+          data: { turbo_confirm: "Are you sure you want to delete '#{@book.title}'?" },
+          class: "btn-danger" %>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+<section class="hero">
+  <h1>Welcome to BookHub</h1>
+  <p>Your one-stop shop for tracking and managing your favorite books.</p>
+  <%= link_to "Browse all books", books_path, class: "btn" %>
+</section>
+
+<section class="recent-books">
+  <h2>Recently Added Books</h2>
+  <% if @recent_books.any? %>
+    <ul class="recent-list">
+      <% @recent_books.each do |book| %>
+        <li>
+          <strong><%= link_to book.title, book %></strong>
+          by <%= book.author %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No books have been added yet.</p>
+  <% end %>
+</section>
