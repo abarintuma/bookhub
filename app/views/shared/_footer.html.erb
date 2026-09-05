@@ -1,4 +1,39 @@
-<footer class="footer">
-  <p>&copy; 2026 BookHub. All rights reserved.</p>
-  <p>Built with Ruby on Rails.</p>
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div class="footer-brand">
+      <div class="brand-logo">
+        <span class="logo-icon small">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        </span>
+        <span class="brand-name">Book<span class="brand-accent">Hub</span></span>
+      </div>
+      <p class="footer-tagline">Organize, discover, and manage your personal book collection effortlessly.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-column">
+        <h4>Navigation</h4>
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "All Books", books_path %></li>
+          <li><%= link_to "Add a Book", new_book_path %></li>
+          <li><%= link_to "About", about_path %></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Stack</h4>
+        <ul>
+          <li><span>Ruby on Rails</span></li>
+          <li><span>SQLite Database</span></li>
+          <li><span>ERB & Vanilla CSS</span></li>
+          <li><span>i18n Ready</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; 2026 BookHub. All rights reserved.</p>
+      <p class="i18n-badge">🌍 Designed for i18n & Internationalization</p>
+    </div>
+  </div>
 </footer>

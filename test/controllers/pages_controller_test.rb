@@ -4,12 +4,12 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test "should get home" do
     get root_url
     assert_response :success
-    assert_select "h1", "Welcome to BookHub"
+    assert_select "h1", text: /Library Hub/i
   end
 
   test "should get about" do
     get about_url
     assert_response :success
-    assert_select "h1", "About BookHub"
+    assert_select "h1", text: /About BookHub/i
   end
 end

@@ -1,8 +1,19 @@
-<section class="book-form">
-  <h1>Add a New Book</h1>
-  <p>Fill in the details below to add a book to your collection.</p>
+<div class="form-page">
+  <div class="form-container-card">
+    <div class="form-header">
+      <div class="form-header-icon icon-indigo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </div>
+      <div>
+        <h1 class="form-title">Add a New Book</h1>
+        <p class="form-subtitle">Fill in the details below to add a book to your collection.</p>
+      </div>
+    </div>
 
-  <%= render "form", book: @book %>
+    <%= render "form", book: @book %>
 
-  <%= link_to "Cancel and go back", books_path %>
-</section>
+    <div class="form-footer-link">
+      <%= link_to "← Cancel and return to library", books_path %>
+    </div>
+  </div>
+</div>

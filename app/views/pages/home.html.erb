@@ -1,21 +1,104 @@
-<section class="hero">
-  <h1>Welcome to BookHub</h1>
-  <p>Your one-stop shop for tracking and managing your favorite books.</p>
-  <%= link_to "Browse all books", books_path, class: "btn" %>
-</section>
+<div class="home-page">
+  <!-- Hero Section -->
+  <section class="hero-card">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      <span>Book Collection Management System</span>
+    </div>
+    <h1 class="hero-title">Your Personal Digital <span class="gradient-text">Library Hub</span></h1>
+    <p class="hero-description">
+      Track your favorite reads, manage pricing and publication dates, and keep your reading log perfectly organized in one stunning place.
+    </p>
 
-<section class="recent-books">
-  <h2>Recently Added Books</h2>
-  <% if @recent_books.any? %>
-    <ul class="recent-list">
-      <% @recent_books.each do |book| %>
-        <li>
-          <strong><%= link_to book.title, book %></strong>
-          by <%= book.author %>
-        </li>
+    <div class="hero-actions">
+      <%= link_to books_path, class: "btn btn-primary btn-lg" do %>
+        <span>Explore Collection</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
       <% end %>
-    </ul>
-  <% else %>
-    <p>No books have been added yet.</p>
-  <% end %>
-</section>
+      <%= link_to new_book_path, class: "btn btn-secondary btn-lg" do %>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span>Add New Book</span>
+      <% end %>
+    </div>
+  </section>
+
+  <!-- Metrics Dashboard Section -->
+  <section class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon icon-indigo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-value"><%= Book.count %></span>
+        <span class="stat-label">Total Books</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon icon-emerald">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-value"><%= number_to_currency(Book.sum(:price) || 0) %></span>
+        <span class="stat-label">Library Value</span>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon icon-purple">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-value"><%= Book.order(created_at: :desc).first&.title.presence || "None" %></span>
+        <span class="stat-label">Latest Addition</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recently Added Books -->
+  <section class="recent-section">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Recently Added</h2>
+        <p class="section-subtitle">The latest titles added to your library.</p>
+      </div>
+      <%= link_to "View all books →", books_path, class: "link-accent" %>
+    </div>
+
+    <% if @recent_books.any? %>
+      <div class="book-grid">
+        <% @recent_books.each do |book| %>
+          <div class="book-card">
+            <div class="book-card-header">
+              <span class="book-cover-placeholder">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              </span>
+              <span class="price-tag"><%= number_to_currency(book.price) %></span>
+            </div>
+            <div class="book-card-body">
+              <h3 class="book-title"><%= link_to book.title, book %></h3>
+              <p class="book-author">by <%= book.author %></p>
+              <% if book.description.present? %>
+                <p class="book-desc"><%= truncate(book.description, length: 90) %></p>
+              <% end %>
+            </div>
+            <div class="book-card-footer">
+              <span class="date-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <%= book.published_at&.strftime("%b %d, %Y") || "N/A" %>
+              </span>
+              <%= link_to "View Details", book, class: "btn btn-sm btn-ghost" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="empty-card">
+        <div class="empty-icon">📖</div>
+        <h3>No Books Found</h3>
+        <p>Your library is currently empty. Start building your collection!</p>
+        <%= link_to "Add Your First Book", new_book_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </section>
+</div>

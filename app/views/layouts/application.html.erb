@@ -1,21 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>BookHub</title>
+    <title>BookHub - Track & Manage Your Favorite Books</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BookHub is a modern web application for managing your personal book collection, tracking prices, and organizing reading lists.">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
   </head>
   <body>
     <%= render "shared/navbar" %>
-    <main class="container">
-      <% flash.each do |type, message| %>
-        <div class="flash flash-<%= type %>"><%= message %></div>
-      <% end %>
-      <%= yield %>
+
+    <main class="main-content">
+      <div class="container">
+        <% flash.each do |type, message| %>
+          <div class="toast toast-<%= type %>" role="alert">
+            <div class="toast-icon">
+              <% if type == "notice" %>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <% else %>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <% end %>
+            </div>
+            <div class="toast-body"><%= message %></div>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
     </main>
+
     <%= render "shared/footer" %>
   </body>
 </html>

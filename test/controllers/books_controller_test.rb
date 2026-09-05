@@ -44,7 +44,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   test "should get edit" do
     get edit_book_url(@book)
     assert_response :success
-    assert_select "h1", "Edit Book"
+    assert_select "h1", "Edit Book Details"
   end
 
   test "should update book" do
