@@ -1,15 +1,13 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
-  author: MyString
-  description: MyText
-  price: 9.99
-  published_at: 2026-09-05
+  title: "The Ruby Way"
+  author: "Hal Fulton"
+  description: "A comprehensive guide to Ruby programming."
+  price: 39.99
+  published_at: 2020-01-15
 
 two:
-  title: MyString
-  author: MyString
-  description: MyText
-  price: 9.99
-  published_at: 2026-09-05
+  title: "Agile Web Development with Rails"
+  author: "Sam Ruby"
+  description: "Learn Rails through iterative development."
+  price: 44.95
+  published_at: 2021-06-10
