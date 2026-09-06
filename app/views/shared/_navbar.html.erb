@@ -27,7 +27,7 @@
         <% end %>
       </div>
       <div class="locale-switcher" style="display: flex; gap: 0.5rem; align-items: center; margin-left: 1rem; font-weight: 600;">
-        <%= link_to "EN", url_for(locale: :en), style: (I18n.locale == :en ? "color: var(--slate-500);") %>
+        <%= link_to "EN", url_for(locale: :en), style: (I18n.locale == :en ? "color: var(--primary-600); font-weight: 800;" : "color: var(--slate-500);") %>
         <span style="color: var(--slate-300);">|</span>
         <%= link_to "日本語", url_for(locale: :ja), style: (I18n.locale == :ja ? "color: var(--primary-600); font-weight: 800;" : "color: var(--slate-500);") %>
       </div>
