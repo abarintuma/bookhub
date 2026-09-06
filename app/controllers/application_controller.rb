@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
 
   # keeps ?locale=ja in all links automatically as users click around
   def default_url_options
-    { locale: I18n.locale }
+    {locale: I18n.locale}
   end
 end
