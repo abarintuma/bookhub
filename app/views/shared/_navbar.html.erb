@@ -16,15 +16,20 @@
 
     <nav class="navbar-nav">
       <ul class="nav-list">
-        <li class="nav-item"><%= link_to "Home", root_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "All Books", books_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to t("navbar.home"), root_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to t("navbar.all_books"), books_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to t("navbar.about"), about_path, class: "nav-link" %></li>
       </ul>
       <div class="nav-actions">
         <%= link_to new_book_path, class: "btn btn-primary nav-cta" do %>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Add Book</span>
+          <span><%= t("navbar.add_book") %></span>
         <% end %>
+      </div>
+      <div class="locale-switcher" style="display: flex; gap: 0.5rem; align-items: center; margin-left: 1rem; font-weight: 600;">
+        <%= link_to "EN", url_for(locale: :en), style: (I18n.locale == :en ? "color: var(--slate-500);") %>
+        <span style="color: var(--slate-300);">|</span>
+        <%= link_to "日本語", url_for(locale: :ja), style: (I18n.locale == :ja ? "color: var(--primary-600); font-weight: 800;" : "color: var(--slate-500);") %>
       </div>
     </nav>
   </div>
