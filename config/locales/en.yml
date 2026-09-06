@@ -28,4 +28,8 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  navbar:
+    home: "Home"
+    all_books: "All Books"
+    about: "About"
+    add_book: "Add Book"
